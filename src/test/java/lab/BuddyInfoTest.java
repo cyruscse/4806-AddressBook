@@ -23,7 +23,7 @@ public class BuddyInfoTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private String buddyCreate = "{ \"name\": \"Cyrus\", \"phoneNumber\": \"555222\" }";
+    private String buddyCreate = "{ \"name\": \"Cyrus\", \"phoneNumber\": \"555222\", \"address\": \"toronto\" }";
     private String buddyPatch = "{ \"phoneNumber\": \"9919\" }";
 
     @Test

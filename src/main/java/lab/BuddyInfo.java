@@ -13,19 +13,23 @@ public class BuddyInfo {
 
     private String name;
     private String phoneNumber;
+    private String address;
 
     protected BuddyInfo () {
 
     }
 
-    public BuddyInfo (String name, String phoneNumber) {
+    public BuddyInfo (String name, String phoneNumber, String address) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     public String getName() {
         return this.name;
     }
+
+    public String getAddress() { return this.address; }
 
     public String getPhoneNumber() {
         return this.phoneNumber;

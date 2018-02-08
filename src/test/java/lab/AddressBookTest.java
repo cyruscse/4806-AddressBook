@@ -25,8 +25,8 @@ public class AddressBookTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private String buddyCreate = "{ \"name\": \"NotCyrus\", \"phoneNumber\": \"555222\" }";
-    private String buddy2Create = "{ \"name\": \"Buddy\", \"phoneNumber\": \"12345\" }";
+    private String buddyCreate = "{ \"name\": \"NotCyrus\", \"phoneNumber\": \"555222\", \"address\": \"carleton\" }";
+    private String buddy2Create = "{ \"name\": \"Buddy\", \"phoneNumber\": \"12345\", \"address\": \"ottawa\" }";
     private String addBuddyToBook = "/addBuddy?name=Cyrus&bookID=1";
     private String addBuddy2ToBook = "/addBuddy?name=Buddy&bookID=3";
     private String deleteBuddy2Book = "/removeBuddy?name=Buddy&bookID=3";
