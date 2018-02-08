@@ -25,7 +25,11 @@ public class AddressBookTest {
     @Autowired
     private MockMvc mockMvc;
 
-    //private String buddyCreate = "{ \"name\": \"Cyrus\", \"phoneNumber\": \"555222\" }";
+    private String buddyCreate = "{ \"name\": \"Cyrus\", \"phoneNumber\": \"555222\" }";
+    private String buddy2Create = "{ \"name\": \"Buddy\", \"phoneNumber\": \"12345\" }";
+    private String addBuddyToBook = "/addBuddy?name=Cyrus&bookID=1";
+    private String addBuddy2ToBook = "/addBuddy?name=Buddy&bookID=3";
+    private String deleteBuddy2Book = "/removeBuddy?name=Buddy&bookID=3";
 
     @Test
     public void createDeleteBook() throws Exception {
@@ -33,6 +37,20 @@ public class AddressBookTest {
         this.mockMvc.perform(get("/addressBook/1").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
         this.mockMvc.perform(delete("/addressBook/1").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
         this.mockMvc.perform(get("/addressBook/1").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
-        //this.mockMvc.perform(get("/buddies")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Cyrus")));
+    }
+
+    @Test
+    public void addBuddy() throws Exception {
+        this.mockMvc.perform(post("/buddies").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(buddyCreate)).andExpect(status().isCreated());
+        this.mockMvc.perform(post("/addressBook").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content("{}")).andExpect(status().isCreated());
+        this.mockMvc.perform(post(addBuddyToBook)).andExpect(status().isOk()).andExpect(content().string(containsString("\"size\":1")));
+    }
+
+    @Test
+    public void removeBuddy() throws Exception {
+        this.mockMvc.perform(post("/buddies").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(buddy2Create)).andExpect(status().isCreated());
+        this.mockMvc.perform(post("/addressBook").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content("{}")).andExpect(status().isCreated());
+        this.mockMvc.perform(post(addBuddy2ToBook)).andExpect(status().isOk()).andExpect(content().string(containsString("\"size\":1")));
+        this.mockMvc.perform(post(deleteBuddy2Book)).andExpect(status().isOk());
     }
 }
