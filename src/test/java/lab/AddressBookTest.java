@@ -25,7 +25,7 @@ public class AddressBookTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private String buddyCreate = "{ \"name\": \"Cyrus\", \"phoneNumber\": \"555222\" }";
+    private String buddyCreate = "{ \"name\": \"NotCyrus\", \"phoneNumber\": \"555222\" }";
     private String buddy2Create = "{ \"name\": \"Buddy\", \"phoneNumber\": \"12345\" }";
     private String addBuddyToBook = "/addBuddy?name=Cyrus&bookID=1";
     private String addBuddy2ToBook = "/addBuddy?name=Buddy&bookID=3";
