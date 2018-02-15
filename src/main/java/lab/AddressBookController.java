@@ -18,7 +18,7 @@ public class AddressBookController {
 
     @RequestMapping("/createAddressBook")
     public AddressBook addressBook() {
-        AddressBook addressBook = new AddressBook();
+        AddressBook addressBook = new AddressBook(); 
         addressBookRepository.save(addressBook);
         return addressBook;
     }
